@@ -1,0 +1,408 @@
+/* General Styles */
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 108px);
+    width: 100%;
+    overflow: hidden;
+}
+
+.editor-container {
+    display: flex;
+    min-height: 0;
+}
+
+#editor {
+    flex: 1;
+    resize: none;
+    overflow: auto;
+}
+
+#preview-container {
+    overflow: auto;
+}
+
+@media (min-width: 768px) {
+    main {
+        flex-direction: row;
+    }
+
+    .editor-container,
+    #preview-container {
+        width: 50%;
+        height: 100%;
+    }
+
+    #divider {
+        cursor: col-resize;
+        width: 4px;
+    }
+}
+
+@media (max-width: 767px) {
+    main {
+        margin-top: 3rem;
+    }
+
+    .editor-container,
+    #preview-container {
+        height: 50vh;
+    }
+}
+
+/* Line Numbers */
+.line-numbers {
+    width: 40px;
+    font-family: monospace;
+    font-size: inherit;
+}
+
+/* Fix editor scroll on enter press */
+#editor {
+    padding-bottom: 50vh; /* Add extra space at the bottom */
+}
+
+/* Markdown Syntax Highlighting */
+.md-heading { color: #0366d6; font-weight: bold; }
+.md-bold { color: #e36209; font-weight: bold; }
+.md-italic { color: #6a737d; font-style: italic; }
+.md-link { color: #0366d6; }
+.md-image { color: #0366d6; }
+.md-code { color: #d73a49; }
+.md-blockquote { color: #22863a; }
+.md-list { color: #e36209; }
+
+.dark .md-heading { color: #3b82f6; }
+.dark .md-bold { color: #f97583; }
+.dark .md-italic { color: #b392f0; }
+.dark .md-link { color: #3b82f6; }
+.dark .md-image { color: #3b82f6; }
+.dark .md-code { color: #f97583; }
+.dark .md-blockquote { color: #85e89d; }
+.dark .md-list { color: #ffab70; }
+
+/* Markdown Preview Styles */
+#preview-container {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #24292e;
+    width: 100%;
+}
+
+.dark #preview-container {
+    color: #c9d1d9;
+}
+
+/* GitHub-style styling for profile readme */
+/* Social buttons (horizontal row) */
+#preview-container .social-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+#preview-container .social-buttons a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* Labels and badges line */
+#preview-container .badge-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 20px 0;
+}
+
+/* Stats cards row */
+#preview-container .stats-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+#preview-container .stats-card {
+    flex: 1;
+    min-width: 300px;
+    background-color: #1c1e22;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+#preview-container h1, 
+#preview-container h2, 
+#preview-container h3, 
+#preview-container h4, 
+#preview-container h5, 
+#preview-container h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #24292e;
+}
+
+.dark #preview-container h1, 
+.dark #preview-container h2, 
+.dark #preview-container h3, 
+.dark #preview-container h4, 
+.dark #preview-container h5, 
+.dark #preview-container h6 {
+    color: #e6edf3;
+}
+
+#preview-container h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+#preview-container h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+#preview-container h3 { font-size: 1.25em; }
+#preview-container h4 { font-size: 1em; }
+#preview-container h5 { font-size: 0.875em; }
+#preview-container h6 { font-size: 0.85em; color: #6a737d; }
+
+.dark #preview-container h1, 
+.dark #preview-container h2 {
+    border-bottom: 1px solid #374151;
+}
+
+.dark #preview-container h6 {
+    color: #9ca3af;
+}
+
+#preview-container p { margin-top: 0; margin-bottom: 16px; }
+#preview-container strong { font-weight: 600; }
+#preview-container em { font-style: italic; }
+
+#preview-container blockquote {
+    margin: 0;
+    padding: 0 1em;
+    color: #6a737d;
+    border-left: 0.25em solid #dfe2e5;
+    margin-bottom: 16px;
+}
+
+#preview-container code {
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 3px;
+}
+
+#preview-container pre {
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f6f8fa;
+    border-radius: 3px;
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+#preview-container pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+    font-size: 100%;
+}
+
+#preview-container ul, 
+#preview-container ol {
+    padding-left: 2em;
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+#preview-container li {
+    word-wrap: break-all;
+}
+
+#preview-container li+li {
+    margin-top: 0.25em;
+}
+
+#preview-container img {
+    max-width: 100%;
+    box-sizing: content-box;
+    background-color: #fff;
+}
+
+#preview-container a {
+    color: #0366d6;
+    text-decoration: none;
+}
+
+#preview-container a:hover {
+    text-decoration: underline;
+}
+
+#preview-container hr {
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: #e1e4e8;
+    border: 0;
+}
+
+#preview-container table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    margin-top: 0;
+    margin-bottom: 16px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+#preview-container table th {
+    font-weight: 600;
+}
+
+#preview-container table th,
+#preview-container table td {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+
+#preview-container table tr {
+    background-color: #fff;
+    border-top: 1px solid #c6cbd1;
+}
+
+#preview-container table tr:nth-child(2n) {
+    background-color: #f6f8fa;
+}
+
+/* Dark Mode Overrides */
+.dark #preview-container blockquote { 
+    border-left: 0.25em solid #374151; 
+    color: #8b949e; 
+}
+
+.dark #preview-container code { 
+    background-color: #1f2937; 
+}
+
+.dark #preview-container pre { 
+    background-color: #1f2937; 
+}
+
+.dark #preview-container a { 
+    color: #3b82f6; 
+}
+
+.dark #preview-container hr { 
+    background-color: #374151; 
+}
+
+.dark #preview-container table th, 
+.dark #preview-container table td { 
+    border: 1px solid #374151; 
+}
+
+.dark #preview-container table tr {
+    background-color: #111827;
+    border-top: 1px solid #374151;
+}
+
+.dark #preview-container table tr:nth-child(2n) {
+    background-color: #1f2937;
+}
+
+.dark #preview-container img {
+    background-color: #111827;
+}
+
+/* Syntax highlighting for the editor */
+.editor-highlight {
+    position: absolute;
+    pointer-events: none;
+    white-space: pre;
+    width: 100%;
+    height: 100%;
+}
+
+/* Button Hover Effects */
+button:hover {
+    transform: translateY(-1px);
+    transition: transform 0.2s ease;
+}
+
+/* Custom Dropdown Styles */
+.dropdown-content {
+    transition: all 0.2s ease;
+}
+
+/* For the Font Size Range Slider */
+input[type=range] {
+    appearance: none;
+    height: 5px;
+    background: #e5e7eb;
+    outline: none;
+    border-radius: 5px;
+}
+
+.dark input[type=range] {
+    background: #4b5563;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #3b82f6;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+input[type=range]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: #3b82f6;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Ensure horizontal layout on desktop */
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  @media (min-width: 768px) {
+    main {
+      flex-direction: row;
+    }
+    .editor-container,
+    #preview-container {
+      width: 50%;
+      min-width: 0;
+    }
+  }
+  .editor-container,
+  #preview-container {
+    min-width: 0;
+  }
+  

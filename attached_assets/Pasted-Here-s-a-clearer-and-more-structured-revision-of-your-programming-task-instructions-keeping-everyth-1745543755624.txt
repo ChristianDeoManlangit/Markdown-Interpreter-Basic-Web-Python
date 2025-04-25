@@ -1,0 +1,105 @@
+Here’s a clearer and more structured revision of your programming task instructions, keeping everything intact but making it easier to follow and act upon:
+
+---
+
+## 📌 Project Task: Build a Responsive Markdown IDE Web App
+
+### 🎯 Objective
+
+Create a responsive Markdown Interpreter/IDE web application inspired by the provided reference image. The app must include:
+
+- **Live Markdown Rendering**
+- **File Handling (Load, Save, Download)**
+- **Theme Toggle (Light/Dark Mode)**
+- **Responsive Design** optimized for both desktop and mobile.
+
+---
+
+### 🛠️ Tech Stack
+
+Use only the following:
+
+- **HTML5**
+- **Tailwind CSS**
+- **Vanilla JavaScript**
+
+> ⚠️ No TypeScript, frameworks, or additional libraries allowed.
+
+---
+
+### 🧩 Functional & UI Requirements
+
+#### 🔹 Layout & Design
+- **Base UI Reference:** Follow the attached image layout closely.
+- **Responsive Modes:**
+  - Desktop View
+  - Mobile View (hamburger-style navigation)
+- **Theme Toggle:** Light/Dark mode switch that affects both editor and output areas.
+  - Dark Mode should resemble GitHub’s dark theme.
+
+#### 🔹 Editor Features
+- **Live Markdown Preview:** Update preview pane in real-time as the user types.
+- **Syntax Highlighting:** Colorized Markdown syntax in the editor (inspired by CodePen/VS Code).
+- **Line Numbers:** Show a line number gutter beside the editor.
+- **Adjustable Tabs:** Make the divider between the editor and preview resizable (both on desktop and mobile).
+
+#### 🔹 Navigation Bar (Desktop)
+Include these buttons:
+
+- **File (Dropdown)**
+  - New File (clears editor)
+  - Save (localStorage)
+  - Load (.md files from file picker)
+- **Download (Dropdown)**
+  - Download as `.md`
+  - Download as `.zip`
+- **Theme Toggle**
+- Each dropdown item must include an **icon + label**.
+
+#### 🔹 Mobile Navigation
+- Collapse the nav bar into a **hamburger icon**.
+- Tapping it should open a menu with the same options as desktop.
+
+#### 🔹 Footer
+- Add a footer with the text:  
+  _"Created by Christian Deo Manlangit"_
+- Make the name a link to:  
+  [https://github.com/ChristianDeoManlangit](https://github.com/ChristianDeoManlangit)
+
+#### 🔹 Settings Dropdown
+- Clicking the settings icon should show a dropdown with:
+  - A **slider** to adjust editor font size
+  - Font size should update in real time.
+
+---
+
+### 🔧 Revision Instructions
+
+Apply the following fixes and enhancements to ensure quality and functionality:
+
+1. **Fix Output Tab Layout**
+   - Resolve spacing issues in the preview pane.
+   - Ensure correct inline and block layout for Markdown elements (like GitHub/typical IDEs).
+
+2. **Syntax Highlighting**
+   - Implement syntax highlighting in the Markdown editor similar to CodePen or VS Code.
+
+3. **Mobile Layout**
+   - On mobile, **stack** the editor on top and preview below (not side-by-side).
+   - Ensure both are scrollable and fully usable.
+
+4. **File Load/Save Functionality**
+   - **Load:** Open file picker, read `.md` file, and populate editor.
+   - **Save:** Download current content as `.md`.
+   - Remove irrelevant or confusing messages (e.g., "Loaded from LocalStorage" if not applicable).
+
+5. **Footer Implementation**
+   - Add footer as described above.
+
+6. **Font Size Settings Dropdown**
+   - Functional settings icon
+   - Slider control to change editor font size live.
+
+---
+
+Let me know if you'd like a checklist version or if you want these instructions split for task delegation!
