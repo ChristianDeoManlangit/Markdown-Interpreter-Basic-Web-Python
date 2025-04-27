@@ -8,13 +8,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    const settingsBtn = document.getElementById('settings-btn');
-    const settingsDropdown = document.getElementById('settings-dropdown');
-    const mobileSettingsBtn = document.getElementById('mobile-settings-btn');
-    const mobileSettingsDropdown = document.getElementById('mobile-settings-dropdown');
-    const fontSizeSlider = document.querySelector('.font-size-slider');
-    const mobileFontSizeSlider = document.querySelector('.mobile-font-size-slider');
     const fileInput = document.getElementById('file-input');
+    
+    // Initialize editor with default content
+    editor.value = localStorage.getItem('markdown-content') || defaultContent;
+    updateLineNumbers();
+    renderMarkdown();
+    
+    // Editor input event (live preview)
+    editor.addEventListener('input', function() {
+        updateLineNumbers();
+        renderMarkdown();
+        saveToLocalStorage();
+    });
+    
+    // Editor scroll event (sync line numbers)
+    editor.addEventListener('scroll', function() {
+        lineNumbers.scrollTop = editor.scrollTop;
+    });
     
     // File Operation Buttons
     const newFileBtn = document.getElementById('new-file');
@@ -270,35 +281,7 @@ function helloWorld() {
         });
     });
     
-    // Settings button
-    settingsBtn.addEventListener('click', function(e) {
-        settingsDropdown.classList.toggle('hidden');
-        e.stopPropagation();
-    });
     
-    mobileSettingsBtn.addEventListener('click', function(e) {
-        mobileSettingsDropdown.classList.toggle('hidden');
-        e.stopPropagation();
-    });
-    
-    // Font size sliders
-    fontSizeSlider.addEventListener('input', function() {
-        const size = this.value;
-        editor.style.fontSize = size + 'px';
-        lineNumbers.style.fontSize = size + 'px';
-        document.getElementById('font-size-value').textContent = size + 'px';
-        localStorage.setItem('editor-font-size', size);
-        mobileFontSizeSlider.value = size;
-    });
-    
-    mobileFontSizeSlider.addEventListener('input', function() {
-        const size = this.value;
-        editor.style.fontSize = size + 'px';
-        lineNumbers.style.fontSize = size + 'px';
-        document.getElementById('mobile-font-size-value').textContent = size + 'px';
-        localStorage.setItem('editor-font-size', size);
-        fontSizeSlider.value = size;
-    });
     
     // Divider drag functionality
     divider.addEventListener('mousedown', function(e) {
