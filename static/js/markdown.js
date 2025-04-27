@@ -87,16 +87,45 @@ class MarkdownParser {
         text = this.preprocessLists(text);
         text = this.preprocessTables(text);
         
-        // Apply each rule
-        this.rules.forEach(rule => {
-            text = text.replace(rule.pattern, rule.replace);
+        // Process code blocks first to prevent interference
+        text = text.replace(/```([a-z]*)\n([\s\S]*?)\n```/g, (match, lang, code) => {
+            return `<pre><code class="language-${lang}">${this.escapeHtml(code.trim())}</code></pre>`;
         });
         
-        // Format GitHub-style profile content with proper layout
-        // This is a special post-processing for profile README content
-        text = this.postProcessProfileLayout(text);
+        // Process inline code
+        text = text.replace(/`([^`]+)`/g, (match, code) => {
+            return `<code>${this.escapeHtml(code)}</code>`;
+        });
+        
+        // Handle images with proper rendering
+        text = text.replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, url) => {
+            if (url.endsWith('.svg')) {
+                return `<img src="${url}" alt="${alt}" class="inline-svg">`;
+            }
+            return `<img src="${url}" alt="${alt}" class="content-image">`;
+        });
+        
+        // Apply remaining rules
+        this.rules.forEach(rule => {
+            if (!rule.pattern.toString().includes('```') && 
+                !rule.pattern.toString().includes('`') && 
+                !rule.pattern.toString().includes('!\\[')) {
+                text = text.replace(rule.pattern, rule.replace);
+            }
+        });
         
         return text;
+    }
+    
+    escapeHtml(text) {
+        const htmlEntities = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        };
+        return text.replace(/[&<>"']/g, char => htmlEntities[char]);
     }
     
     postProcessProfileLayout(text) {

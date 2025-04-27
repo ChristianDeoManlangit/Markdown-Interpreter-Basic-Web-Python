@@ -111,10 +111,12 @@ function helloWorld() {
     updateLineNumbers();
     renderMarkdown();
     
-    // Check for saved theme (default to dark theme if not set)
-    if (localStorage.getItem('dark-mode') === null || localStorage.getItem('dark-mode') === 'true') {
+    // Initialize theme based on system preference or saved preference
+    const darkMode = localStorage.getItem('dark-mode');
+    if (darkMode === 'true' || (darkMode === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
-        localStorage.setItem('dark-mode', 'true');
+    } else {
+        document.documentElement.classList.remove('dark');
     }
     
     // Set default font size
